@@ -1,12 +1,15 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import GPT2Tokenizer, TFGPT2LMHeadModel
+import tensorflow as tf
 
-tokenizer = AutoTokenizer.from_pretrained('./local_model/')
-model = AutoModelForCausalLM.from_pretrained('./local_model/',pad_token_id=tokenizer.eos_token_id)
+tokenizer = GPT2Tokenizer.from_pretrained('./local_model/')
+
+model = TFGPT2LMHeadModel.from_pretrained('./local_model/',pad_token_id=tokenizer.eos_token_id)
 
 tokenizer.decode(tokenizer.eos_token_id)
 
-sentence = "Love is"
-input_ids = tokenizer.encode(sentence, return_tensors='pt')
+
+sentence = "Hello, my dog is cute"
+input_ids = tokenizer.encode(sentence, return_tensors='tf')
 
 output = model.generate(
     input_ids,

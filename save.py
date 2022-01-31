@@ -1,8 +1,8 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import GPT2Tokenizer, TFGPT2LMHeadModel
+import tensorflow as tf
 
-tokenizer = AutoTokenizer.from_pretrained("distilgpt2")
-
-model = AutoModelForCausalLM.from_pretrained("distilgpt2")
+tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
+model = TFGPT2LMHeadModel.from_pretrained("distilgpt2")
 
 tokenizer.save_pretrained('./local_model/')
 model.save_pretrained('./local_model/')
